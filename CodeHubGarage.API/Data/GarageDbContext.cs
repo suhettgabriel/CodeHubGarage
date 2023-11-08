@@ -15,7 +15,16 @@ namespace CodeHubGarage.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Defina as configurações de mapeamento das entidades aqui
+            // Configurar 'FormasPagamento' como uma entidade sem chave primária
+            modelBuilder.Entity<FormasPagamento>().HasNoKey();
+
+            // Defina as configurações de mapeamento das outras entidades aqui
+
+            // Exemplo de configuração para 'Garagens' com chave primária
+            modelBuilder.Entity<Garagens>().HasKey(g => g.Codigo);
+
+            // Exemplo de configuração para 'Passagens' com chave primária
+            modelBuilder.Entity<Passagens>().HasKey(p => p.Id);
         }
     }
 }

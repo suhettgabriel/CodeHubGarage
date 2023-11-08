@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\CodeHubGarage.API"
+    "\\CodeHubGarage.API",
+    "\\CodeHubGarage.Domain"
   ],
-  "SelectedNode": "\\CodeHubGarage.API\\Program.cs",
+  "SelectedNode": "\\CodeHubGarage.Domain\\Passagens.cs",
   "PreviewInSolutionExplorer": false
 }

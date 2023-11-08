@@ -10,3 +10,5 @@ C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\C
 C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\refint\CodeHubGarage.Domain.dll
 C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.pdb
 C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\ref\CodeHubGarage.Domain.dll
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\bin\Debug\net6.0\CodeHubGarage.Domain.runtimeconfig.json
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.genruntimeconfig.cache
