@@ -1,12 +1,13 @@
+using CodeHubGarage.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace CodeHubGarage.API.Data
 {
     public class GarageDbContext : DbContext
     {
-        public DbSet<Garage> Garages { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
-        public DbSet<Passage> Passages { get; set; }
+        public DbSet<FormasPagamento> FormasPagamento { get; set; }
+        public DbSet<Garagens> Garagens { get; set; }
+        public DbSet<Passagens> Passagens { get; set; }
 
         public GarageDbContext(DbContextOptions<GarageDbContext> options) : base(options)
         {

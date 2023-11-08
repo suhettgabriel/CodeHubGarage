@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeHubGarage.API", "CodeHubGarage.API\CodeHubGarage.API.csproj", "{8B1A8BDB-9AAB-4EB5-AFE1-4AB264438057}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CBFDFFA5-71BB-4FE5-91B0-12C8D9A9E793} = {CBFDFFA5-71BB-4FE5-91B0-12C8D9A9E793}
+		{FDBDD760-FDBD-415D-A66E-92F4B3EA0661} = {FDBDD760-FDBD-415D-A66E-92F4B3EA0661}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeHubGarage.Domain", "CodeHubGarage.Domain\CodeHubGarage.Domain.csproj", "{CBFDFFA5-71BB-4FE5-91B0-12C8D9A9E793}"
 EndProject
