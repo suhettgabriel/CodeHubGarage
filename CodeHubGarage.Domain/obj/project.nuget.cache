@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WMlu/15sJFA6ts5WFSLEyfcUzJ7OS2E5ZfoMutjLzzuDvoiKmmjlmK5bfyjzIoBGNwwarNCcY5d/DbI2eFsbFw==",
+  "dgSpecHash": "uTmREM1D7np7/UJzN2MvRDEMzGcNMIsnIYBmRDvopX/mdskMuhqDIcdkRNAacp/mH/4Ebx/ZeWkHz18dHmNt4w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

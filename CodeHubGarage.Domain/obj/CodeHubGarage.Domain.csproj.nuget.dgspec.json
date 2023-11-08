@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj": {}
+    "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj": {
+    "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
         "projectName": "CodeHubGarage.Domain",
-        "projectPath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
+        "projectPath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
         "packagesPath": "C:\\Users\\Bill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

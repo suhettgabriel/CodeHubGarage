@@ -1,0 +1,7 @@
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.csproj.AssemblyReference.cache
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.AssemblyInfoInputs.cache
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.AssemblyInfo.cs
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.csproj.CoreCompileInputs.cache
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.API\obj\Debug\net7.0\CodeHubGarage.API.MvcApplicationPartsAssemblyInfo.cache

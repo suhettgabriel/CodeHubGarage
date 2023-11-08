@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SIzoAylQXGzyLenNo2FF/t1YfOwsCKw2BlT6agQxt9D8sJsICmMgwnCdh8rKUDvHqnA5gFPOJJcySjEhhVFJ7A==",
+  "dgSpecHash": "1cTdje2y92Pbk8QsCrEFSDqsj38n207hAS3uFgpi1GrxZeq2RB/YHulRVZVvahH4rB1yhjiekCy4/ymEUnvVfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage.Tests\\CodeHubGarage.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Tests\\CodeHubGarage.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bill\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Bill\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",
