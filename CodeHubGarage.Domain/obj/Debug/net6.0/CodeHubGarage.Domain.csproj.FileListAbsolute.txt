@@ -1,0 +1,12 @@
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\bin\Debug\net6.0\CodeHubGarage.Domain.deps.json
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\bin\Debug\net6.0\CodeHubGarage.Domain.dll
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\bin\Debug\net6.0\CodeHubGarage.Domain.pdb
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.csproj.AssemblyReference.cache
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.AssemblyInfoInputs.cache
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.AssemblyInfo.cs
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.dll
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\refint\CodeHubGarage.Domain.dll
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\CodeHubGarage.Domain.pdb
+C:\Users\Bill\source\repos\CodeHubGarage\CodeHubGarage.Domain\obj\Debug\net6.0\ref\CodeHubGarage.Domain.dll
