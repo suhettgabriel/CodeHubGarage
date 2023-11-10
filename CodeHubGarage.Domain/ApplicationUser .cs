@@ -12,5 +12,7 @@ namespace CodeHubGarage.Domain
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
+        public string CarroPlaca { get; set; }
+        public bool IsMensalista { get; set; }
     }
 }

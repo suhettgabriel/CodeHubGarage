@@ -11,31 +11,28 @@ namespace CodeHubGarage.API.Controllers
         private readonly IGaragemService _garagemService;
         private readonly IFormaPagamentoService _formaPagamentoService;
         private readonly IPassagemService _passagemService;
+        private readonly ITempoMedioService _tempoMedioService;
 
-        public TempoMedioController(IGaragemService garagemService, IFormaPagamentoService formaPagamentoService, IPassagemService passagemService)
+        public TempoMedioController(IGaragemService garagemService, IFormaPagamentoService formaPagamentoService, IPassagemService passagemService, ITempoMedioService tempoMedioService)
         {
             _garagemService = garagemService;
             _formaPagamentoService = formaPagamentoService;
             _passagemService = passagemService;
+            _tempoMedioService = tempoMedioService;
         }
 
         [HttpGet("tempo-medio-estadia-mensalistas")]
         public IActionResult TempoMedioEstadiaMensalistas(string codigoGaragem)
         {
-            // Implemente a lógica para obter o tempo médio de estadia de mensalistas
-            // Utilize os serviços e retorne os resultados
-            // Exemplo: var tempoMedioMensalistas = _passagemService.GetTempoMedioEstadiaMensalistas(codigoGaragem);
-            return Ok(/* tempoMedioMensalistas */);
+            var tempoMedioMensalistas = _tempoMedioService.GetTempoMedioEstadiaMensalistas(codigoGaragem);
+            return Ok(tempoMedioMensalistas);
         }
 
         [HttpGet("tempo-medio-estadia-clientes")]
         public IActionResult TempoMedioEstadiaClientes(string codigoGaragem)
         {
-            // Implemente a lógica para obter o tempo médio de estadia de clientes não mensalistas
-            // Utilize os serviços e retorne os resultados
-            // Exemplo: var tempoMedioClientes = _passagemService.GetTempoMedioEstadiaClientes(codigoGaragem);
-            return Ok(/* tempoMedioClientes */);
+            var tempoMedioClientes = _tempoMedioService.GetTempoMedioEstadiaClientes(codigoGaragem);
+            return Ok(tempoMedioClientes);
         }
     }
-
 }

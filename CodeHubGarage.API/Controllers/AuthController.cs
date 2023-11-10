@@ -1,9 +1,7 @@
 ﻿using CodeHubGarage.API.Interface;
 using CodeHubGarage.Domain;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace CodeHubGarage.API.Controllers
 {
@@ -26,10 +24,10 @@ namespace CodeHubGarage.API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(new { Message = "Registration successful" });
+                return Ok(new { Mensagem = "Usuário cadastrado com sucesso!" });
             }
 
-            return BadRequest(new { Message = "Registration failed", Errors = result.Errors });
+            return BadRequest(new { Mensagem = "Não foi possivel cadastrar o usuário", Errors = result.Errors });
         }
 
         [HttpPost("login")]
@@ -43,7 +41,7 @@ namespace CodeHubGarage.API.Controllers
                 return Ok(response);
             }
 
-            return Unauthorized(new { Message = "Authentication failed" });
+            return Unauthorized(new { Mensagem = "Autenticação falhou" });
         }
     }
 }

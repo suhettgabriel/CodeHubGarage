@@ -24,6 +24,8 @@ namespace CodeHubGarage.Domain
         [DisplayFormat(DataFormatString = "({0:##})#####-####", ApplyFormatInEditMode = true)]
         [RegularExpression(@"^\(\d{2}\)\d{5}-\d{4}$", ErrorMessage = "Formato de telefone inválido")]
         public string PhoneNumber { get; set; }
+        public string CarroPlaca { get; set; }
+        public bool IsMensalista { get; set; }
 
 
     }

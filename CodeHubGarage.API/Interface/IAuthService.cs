@@ -1,6 +1,5 @@
 ﻿using CodeHubGarage.Domain;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 
 namespace CodeHubGarage.API.Interface
 {

@@ -6,5 +6,6 @@ namespace CodeHubGarage.API.Interface
     {
         List<Garagens> GetGaragens();
         Garagens GetGaragemByCodigo(string codigo);
+        Garagens GetGaragemByUserId(string userId);
     }
 }

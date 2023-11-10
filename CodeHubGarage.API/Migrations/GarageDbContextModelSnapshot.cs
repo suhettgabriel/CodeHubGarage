@@ -30,6 +30,10 @@ namespace CodeHubGarage.API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("CarroPlaca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -45,6 +49,9 @@ namespace CodeHubGarage.API.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMensalista")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -111,6 +118,43 @@ namespace CodeHubGarage.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("AuthenticationResponses");
+                });
+
+            modelBuilder.Entity("CodeHubGarage.Domain.Estacionamentos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataHoraEntrada")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataHoraSaida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FormasPagamentoCodigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GaragemCodigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isMensalista")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Estacionamentos");
                 });
 
             modelBuilder.Entity("CodeHubGarage.Domain.FormasPagamento", b =>

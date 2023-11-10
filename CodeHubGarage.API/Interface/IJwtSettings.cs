@@ -1,6 +1,4 @@
-﻿using CodeHubGarage.Domain;
-
-namespace CodeHubGarage.API.Interface
+﻿namespace CodeHubGarage.API.Interface
 {
     public interface IJwtSettings
     {

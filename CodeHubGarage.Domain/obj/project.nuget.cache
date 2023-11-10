@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4FUeBsyVt0gQRXs5DuHSxS0tc3DOx5WYMDaavr/el7bWeNFNtB1TndkvERLwLE7YYIE3NJXxz+thJFL/SBRGCA==",
+  "dgSpecHash": "Tf9yb/KyNGijOSQs0BkUn/pmPFbqytXgJHpBGLyabdANHzTJsFjMOuQfh0xUSun9kwba8NrRFosTR/fXdDZzDg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Bill\\source\\repos\\CodeHubGarage\\CodeHubGarage.Domain\\CodeHubGarage.Domain.csproj",
   "expectedPackageFiles": [
@@ -66,6 +66,7 @@
     "C:\\Users\\Bill\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Bill\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Bill\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Bill\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Bill\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Bill\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Bill\\.nuget\\packages\\system.componentmodel.annotations\\4.5.0\\system.componentmodel.annotations.4.5.0.nupkg.sha512",

@@ -1,6 +1,6 @@
 ﻿using CodeHubGarage.API.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CodeHubGarage.API.Controllers
 {
@@ -22,11 +22,9 @@ namespace CodeHubGarage.API.Controllers
         [HttpGet("fechamento-por-periodo")]
         public IActionResult FechamentoPorPeriodo(DateTime dataHoraInicial, DateTime dataHoraFinal, string codigoGaragem)
         {
-            // Implemente a lógica para obter o fechamento por período
-            // Utilize os serviços e retorne os resultados
-            // Exemplo: var fechamento = _passagemService.GetFechamentoPorPeriodo(dataHoraInicial, dataHoraFinal, codigoGaragem);
-            return Ok(/* fechamento */);
+            var fechamento = _passagemService.GetFechamentoPorPeriodo(dataHoraInicial, dataHoraFinal, codigoGaragem);
+
+            return Ok(fechamento);
         }
     }
-
 }
