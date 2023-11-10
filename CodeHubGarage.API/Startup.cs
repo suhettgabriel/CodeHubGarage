@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using CodeHubGarage.Domain;
 using Microsoft.Extensions.Options;
 using CodeHubGarage.API.Data;
-using CodeHubGarage.API.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
