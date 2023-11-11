@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "15519627-e16d-4741-a284-75591cc41d18",
+		"name": "CodHubGarage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10478980"
+	},
+	"item": [
+		{
+			"name": "REGISTRAR USUÁRIO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"suhett0\",\r\n  \"password\": \"Suhett@00\",\r\n  \"firstName\": \"Gabriel\",\r\n  \"lastName\": \"Suhett\",\r\n  \"dateOfBirth\": \"1983-03-22\",\r\n  \"phoneNumber\": \"(22)99233-2259\",\r\n  \"carroPlaca\": \"GBB-1111\",\r\n  \"isMensalista\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44317/api/auth/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"suhett0\",\r\n  \"password\": \"Suhett@00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44317/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ESTACIONAR",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "secret",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsdWFuYSIsImp0aSI6IjA1YmNmYmFhLWNhZjctNDRjZC1hZDMwLTc1ZjM0NmMxNGI1ZSIsImV4cCI6MTY5OTY1MjUxNywiaXNzIjoic3VhX2VtaXNzb3JhX2FxdWkiLCJhdWQiOiJzZXVfcHVibGljb19hcXVpIn0.HX5s9wonhem34cHVyBBi0MnbqtaS48uLXFj5bK2HWPU",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"1e2e42ac-9f11-49d1-91ce-eccfee515669\",\r\n  \"garagemCodigo\": \"EVO01\",\r\n  \"CarroPlaca\":\"WPS-9999\",\r\n  \"CarroMarca\":\"Fiat\",\r\n  \"CarroModelo\":\"Marea\",\r\n  \"formasPagamentoCodigo\": \"PIX\",\r\n  \"dataHoraEntrada\": \"2023-11-11T04:00:48.590Z\",\r\n  \"status\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44317/api/estacionamento/estacionar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"estacionamento",
+						"estacionar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FECHAR ESTACIONAMENTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/fechamento/fechar-estacionamento?userId=1e2e42ac-9f11-49d1-91ce-eccfee515669",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"fechamento",
+						"fechar-estacionamento"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1e2e42ac-9f11-49d1-91ce-eccfee515669"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTA CARRO POR PERIODO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/lista-carros/carros-no-periodo?dataHoraInicial=2023-11-11 08:34:42.2067932&dataHoraFinal=2023-11-11 16:30:41.7375693&codigoGaragem=EVO01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"lista-carros",
+						"carros-no-periodo"
+					],
+					"query": [
+						{
+							"key": "dataHoraInicial",
+							"value": "2023-11-11 08:34:42.2067932"
+						},
+						{
+							"key": "dataHoraFinal",
+							"value": "2023-11-11 16:30:41.7375693"
+						},
+						{
+							"key": "codigoGaragem",
+							"value": "EVO01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTA CARROS GARAGEM",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/lista-carros/carros-na-garagem?codigoGaragem=EVO01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"lista-carros",
+						"carros-na-garagem"
+					],
+					"query": [
+						{
+							"key": "codigoGaragem",
+							"value": "EVO01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTA CARROS PASSARAM",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/lista-carros/carros-que-passaram?codigoGaragem=COTO01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"lista-carros",
+						"carros-que-passaram"
+					],
+					"query": [
+						{
+							"key": "codigoGaragem",
+							"value": "COTO01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEMPO MÉDIO MENSALISTA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/tempo-medio/tempo-medio-estadia-mensalistas?codigoGaragem=EVO01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"tempo-medio",
+						"tempo-medio-estadia-mensalistas"
+					],
+					"query": [
+						{
+							"key": "codigoGaragem",
+							"value": "EVO01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEMPO MÉDIO CLIENTE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/tempo-medio/tempo-medio-estadia-clientes?codigoGaragem=EVO01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"tempo-medio",
+						"tempo-medio-estadia-clientes"
+					],
+					"query": [
+						{
+							"key": "codigoGaragem",
+							"value": "EVO01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
