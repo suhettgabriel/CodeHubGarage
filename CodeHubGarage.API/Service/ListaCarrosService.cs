@@ -27,10 +27,10 @@ namespace CodeHubGarage.API.Service
                 .ToList();
         }
 
-        public List<Estacionamentos> GetCarrosQuePassaram(string codigoGaragem)
+        public List<Passagens> GetCarrosQuePassaram(string codigoGaragem)
         {
-            return _dbContext.Estacionamentos
-                .Where(p => p.GaragemCodigo == codigoGaragem && p.DataHoraSaida != null)
+            return _dbContext.Passagens
+                .Where(p => p.Garagem == codigoGaragem && p.DataHoraSaida != null)
                 .ToList();
         }
     }

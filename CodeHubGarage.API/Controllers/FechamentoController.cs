@@ -1,4 +1,5 @@
 ﻿using CodeHubGarage.API.Interface;
+using CodeHubGarage.Domain;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -36,20 +37,28 @@ namespace CodeHubGarage.API.Controllers
         {
             try
             {
-                //PRECISA VIM COM A REQUISIÇÃO O CODIGO DA GARAGEM
                 bool isMensalista = _estacionamentoService.VerificarSeUsuarioEhMensalista(userId);
                 DateTime dataHoraSaida = DateTime.Now;
+                TimeSpan quantidadeTempo = _estacionamentoService.BuscarQuantidadeTempo(userId, dataHoraSaida);
+                decimal valorEstadia = _estacionamentoService.CalcularValorEstadia(userId, isMensalista, dataHoraSaida, dataHoraSaida);
 
-                //vERIFICAR SE O STATUS É DIFERENTE DE 0, SE FOR CONTINUA, SENAO, INFORMA QUE O USUÁRIO NÃO TEM CARRO ESTACIONADO NA GARAGEM
-                decimal valorEstadia = _estacionamentoService.CalcularValorEstadia(userId, isMensalista, dataHoraSaida,dataHoraSaida );
-                _fechamentoService.RegistrarSaidaEstacionamento(userId, dataHoraSaida);
-                
+                var dadosUsuario = _estacionamentoService.ObterDadosUsuario(userId);
+
+                if (dadosUsuario == null)
+                {
+                    return BadRequest(new { Mensagem = "Usuário não tem carros estacionados na garagem." });
+                }
+
+                _estacionamentoService.RegistrarSaidaEstacionamento(userId, dataHoraSaida, dadosUsuario.Garagem, dadosUsuario.CarroPlaca, dadosUsuario.CarroMarca, dadosUsuario.CarroModelo, dataHoraSaida, dadosUsuario.FormaPagamento);
+                _estacionamentoService.SalvarPassagem(userId, dataHoraSaida, _garagemService.GetGaragemByUserId(userId), dadosUsuario.CarroPlaca, dadosUsuario.CarroMarca, dadosUsuario.CarroModelo, dadosUsuario.FormaPagamento, quantidadeTempo, valorEstadia);
+
                 return Ok(new { Mensagem = "Saída registrada com sucesso", ValorEstadia = valorEstadia });
             }
             catch (Exception ex)
             {
                 return BadRequest(new { Mensagem = $"Erro ao fechar o estacionamento: {ex.Message}" });
             }
+
         }
     }
 }

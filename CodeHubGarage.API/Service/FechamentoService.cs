@@ -31,15 +31,23 @@ public class FechamentoService : IFechamentoService
         return fechamento;
     }
 
-    public void RegistrarSaidaEstacionamento(string userId, DateTime dataHoraSaida)
+    public void RegistrarSaidaEstacionamento(string userId, DateTime dataHoraSaida, string garagemCodigo, string carroPlaca,
+        string carroMarca, string carroModelo, DateTime dataHoraEntrada, string formaPagamento)
+
     {
         var estacionamentoAberto = _dbContext.Estacionamentos
-            .FirstOrDefault(e => e.UserId == userId && e.Status && e.DataHoraSaida == null);
+            .FirstOrDefault(e => e.UserId == userId && e.Status == false && e.DataHoraSaida == null);
 
         if (estacionamentoAberto != null)
         {
             estacionamentoAberto.DataHoraSaida = dataHoraSaida;
-            estacionamentoAberto.Status = false;
+            estacionamentoAberto.Status = true;
+            estacionamentoAberto.GaragemCodigo = garagemCodigo;
+            estacionamentoAberto.CarroPlaca = carroPlaca;
+            estacionamentoAberto.CarroMarca = carroMarca;
+            estacionamentoAberto.CarroModelo = carroModelo;
+            estacionamentoAberto.DataHoraEntrada = dataHoraEntrada;
+            estacionamentoAberto.FormasPagamentoCodigo = formaPagamento;
 
             _dbContext.SaveChanges();
 
@@ -47,8 +55,10 @@ public class FechamentoService : IFechamentoService
         }
     }
 
+
     private void RegistrarPassagem(Estacionamentos estacionamento)
     {
+
         var passagem = new Passagens
         {
             Garagem = estacionamento.GaragemCodigo,

@@ -20,91 +20,177 @@ public class EstacionamentoService : IEstacionamentoService
 
     public bool VerificarSeUsuarioEhMensalista(string userId)
     {
-        var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
-        return user?.IsMensalista ?? false;
+        try
+        {
+            var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            return user?.IsMensalista ?? false;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em VerificarSeUsuarioEhMensalista para o usuário {userId}: {ex.Message}");
+            throw;
+        }
     }
 
     public DateTime? GetDataEntrada(string userId)
     {
-        var dataEntrada = _dbContext.Estacionamentos
-            .Where(e => e.UserId == userId && e.Status == false)
-            .OrderByDescending(e => e.DataHoraEntrada)
-            .Select(e => e.DataHoraEntrada)
-            .FirstOrDefault();
-
-        return dataEntrada;
-    }
-
-    public void DadosInfoUsuario(string userId, out string carroPlaca, out string carroMarca, out string carroModelo)
-    {
-        var dadosUsuario = _dbContext.Estacionamentos
-            .Where(e => e.UserId == userId && e.Status == false)
-            .Select(e => new
-            {
-                CarroPlaca = e.CarroPlaca,
-                CarroMarca = e.CarroMarca,
-                CarroModelo = e.CarroModelo
-            })
-            .FirstOrDefault();
-
-        if (dadosUsuario != null)
+        try
         {
-            carroPlaca = dadosUsuario.CarroPlaca;
-            carroMarca = dadosUsuario.CarroMarca;
-            carroModelo = dadosUsuario.CarroModelo;
+            var dataEntrada = _dbContext.Estacionamentos
+                .Where(e => e.UserId == userId && e.Status == false)
+                .OrderByDescending(e => e.DataHoraEntrada)
+                .Select(e => e.DataHoraEntrada)
+                .FirstOrDefault();
+
+            return dataEntrada;
         }
-        else
+        catch (Exception ex)
         {
-            carroPlaca = null;
-            carroMarca = null;
-            carroModelo = null;
+            _logger.LogError($"Erro em GetDataEntrada para o usuário {userId}: {ex.Message}");
+            throw;
         }
     }
 
-    public string VerificaNomeUsuario(string userId)
+    public TimeSpan BuscarQuantidadeTempo(string userId, DateTime dataHoraSaida)
     {
-        var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
-        return user?.UserName ?? "Usuário não encontrado";
+        try
+        {
+            DateTime? dataEntrada = GetDataEntrada(userId);
+
+            if (dataEntrada.HasValue)
+            {
+                return dataHoraSaida - dataEntrada.Value;
+            }
+
+            return TimeSpan.Zero;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em BuscarQuantidadeTempo para o usuário {userId}: {ex.Message}");
+            throw;
+        }
     }
 
-    public decimal CalcularValorEstadia(string userId, bool isMensalista, DateTime entrada, DateTime? dataHoraSaida)
+    public DadosUsuario ObterDadosUsuario(string userId)
     {
-        decimal valorCalculado = 0;
-
-        Garagens garagem = _garagemService.GetGaragemByUserId(userId);
-        DateTime? dataEntrada = GetDataEntrada(userId);
-        string carroPlaca, carroMarca, carroModelo;
-
-        DadosInfoUsuario(userId, out carroPlaca, out carroMarca, out carroModelo);
-
-        if (!dataEntrada.HasValue)
+        try
         {
-            var novoEstacionamento = new Estacionamentos
+            var dadosUsuario = _dbContext.Estacionamentos
+                .Where(e => e.UserId == userId && e.Status == false)
+                .Select(e => new DadosUsuario
+                {
+                    CarroPlaca = e.CarroPlaca,
+                    CarroMarca = e.CarroMarca,
+                    CarroModelo = e.CarroModelo,
+                    FormaPagamento = e.FormasPagamentoCodigo,
+                    Garagem = e.GaragemCodigo,
+                })
+                .FirstOrDefault();
+
+            if (dadosUsuario == null)
             {
-                UserId = userId,
-                GaragemCodigo = garagem.Codigo,
+                _logger.LogWarning($"Não foi encontrado nenhum carro estacionado para o usuário {userId}.");
+            }
+
+            return dadosUsuario;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em ObterDadosUsuario para o usuário {userId}: {ex.Message}");
+            throw;
+        }
+    }
+
+    public void DadosInfoUsuario(string userId, out string carroPlaca, out string carroMarca, out string carroModelo, out string formaPagamento)
+    {
+        try
+        {
+            var dadosUsuario = _dbContext.Estacionamentos
+                .Where(e => e.UserId == userId && e.Status == false)
+                .Select(e => new
+                {
+                    CarroPlaca = e.CarroPlaca,
+                    CarroMarca = e.CarroMarca,
+                    CarroModelo = e.CarroModelo,
+                    FormaPagamento = e.FormasPagamentoCodigo
+                })
+                .FirstOrDefault();
+
+            if (dadosUsuario != null)
+            {
+                carroPlaca = dadosUsuario.CarroPlaca;
+                carroMarca = dadosUsuario.CarroMarca;
+                carroModelo = dadosUsuario.CarroModelo;
+                formaPagamento = dadosUsuario.FormaPagamento;
+
+            }
+            else
+            {
+                carroPlaca = null;
+                carroMarca = null;
+                carroModelo = null;
+                formaPagamento = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em DadosInfoUsuario para o usuário {userId}: {ex.Message}");
+            throw;
+        }
+    }
+
+    public void RegistrarEntradaEstacionamento(string userId, DateTime entrada)
+    {
+        try
+        {
+            Garagens garagem = _garagemService.GetGaragemByUserId(userId);
+            DateTime? dataEntrada = GetDataEntrada(userId);
+
+            // Substituindo a chamada ao método DadosInfoUsuario por ObterDadosUsuario
+            DadosUsuario dadosUsuario = ObterDadosUsuario(userId);
+
+            if (!dataEntrada.HasValue)
+            {
+                var novoEstacionamento = new Estacionamentos
+                {
+                    UserId = userId,
+                    GaragemCodigo = garagem.Codigo,
+                    CarroPlaca = dadosUsuario.CarroPlaca,
+                    CarroMarca = dadosUsuario.CarroMarca,
+                    CarroModelo = dadosUsuario.CarroModelo,
+                    DataHoraEntrada = entrada,
+                    FormasPagamentoCodigo = dadosUsuario.FormaPagamento,
+                    Status = true
+                };
+
+                _dbContext.Estacionamentos.Add(novoEstacionamento);
+                _dbContext.SaveChanges();
+
+                _logger.LogInformation($"Estacionamento registrado para o usuário {userId} na garagem {garagem.Codigo}.");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em RegistrarEntradaEstacionamento para o usuário {userId}: {ex.Message}");
+            throw;
+        }
+    }
+
+    public void SalvarPassagem(string userId, DateTime entrada, Garagens garagem, string carroPlaca, string carroMarca, string carroModelo, string formaPagamento, TimeSpan quantidadeTempo, decimal valorEstadia)
+    {
+        try
+        {
+            var novaPassagem = new Passagens
+            {
+                Garagem = garagem.Codigo,
                 CarroPlaca = carroPlaca,
                 CarroMarca = carroMarca,
                 CarroModelo = carroModelo,
                 DataHoraEntrada = entrada,
-                Status = true
-            };
-
-            _dbContext.Estacionamentos.Add(novoEstacionamento);
-            _dbContext.SaveChanges();
-
-            _logger.LogInformation($"Estacionamento registrado para o usuário {userId} na garagem {garagem.Codigo}.");
-
-            var novaPassagem = new Passagens
-            {
-                CarroPlaca = novoEstacionamento.CarroPlaca,
-                CarroMarca = novoEstacionamento.CarroMarca,
-                CarroModelo = novoEstacionamento.CarroModelo,
-                DataHoraEntrada = entrada,
-                FormaPagamento = novoEstacionamento.FormasPagamentoCodigo,
-                Garagem = garagem.Codigo,
-                QuantidadeTempo = 0, // Criar lógica adequada para obter a quantidade de tempo
-                PrecoTotal = 0 // Criar lógica adequada para obter o preço total
+                DataHoraSaida = entrada,
+                FormaPagamento = formaPagamento,
+                QuantidadeTempo = quantidadeTempo.Hours,
+                PrecoTotal = valorEstadia
             };
 
             _dbContext.Passagens.Add(novaPassagem);
@@ -112,8 +198,58 @@ public class EstacionamentoService : IEstacionamentoService
 
             _logger.LogInformation($"Passagem registrada para o usuário {userId} na garagem {garagem.Codigo}.");
         }
-        else
+        catch (Exception ex)
         {
+            _logger.LogError($"Erro em SalvarPassagem para o usuário {userId}: {ex.Message}");
+            throw;
+        }
+    }
+
+    public void RegistrarSaidaEstacionamento(string userId, DateTime dataHoraSaida, string garagemCodigo, string carroPlaca, string carroMarca, string carroModelo, DateTime dataHoraEntrada, string formaPagamento)
+    {
+        try
+        {
+            var estacionamentoAberto = _dbContext.Estacionamentos
+                .FirstOrDefault(e => e.UserId == userId && e.Status == false && e.DataHoraSaida == null);
+
+            if (estacionamentoAberto != null)
+            {
+                estacionamentoAberto.DataHoraSaida = dataHoraSaida;
+                estacionamentoAberto.Status = true;
+
+                _dbContext.SaveChanges();
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em RegistrarSaidaEstacionamento para o usuário {userId}: {ex.Message}");
+            throw;
+        }
+    }
+
+    public string VerificaNomeUsuario(string userId)
+    {
+        try
+        {
+            var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            return user?.UserName ?? "Usuário não encontrado";
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em VerificaNomeUsuario para o usuário {userId}: {ex.Message}");
+            throw;
+        }
+    }
+
+    public decimal CalcularValorEstadia(string userId, bool isMensalista, DateTime entrada, DateTime? dataHoraSaida)
+    {
+        try
+        {
+            decimal valorCalculado = 0;
+
+            Garagens garagem = _garagemService.GetGaragemByUserId(userId);
+            DateTime? dataEntrada = GetDataEntrada(userId);
+
             if (isMensalista)
             {
                 valorCalculado = garagem.Preco_Mensalista;
@@ -138,9 +274,14 @@ public class EstacionamentoService : IEstacionamentoService
                     }
                 }
             }
-        }
 
-        return valorCalculado;
+            return valorCalculado;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Erro em CalcularValorEstadia para o usuário {userId}: {ex.Message}");
+            throw;
+        }
     }
 
     private decimal CalcularValorDemaisHoras(Garagens garagem, TimeSpan duracao)

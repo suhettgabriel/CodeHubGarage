@@ -6,6 +6,6 @@ namespace CodeHubGarage.API.Interface
     {
         List<Estacionamentos> GetCarrosNoPeriodo(DateTime dataHoraInicial, DateTime dataHoraFinal, string codigoGaragem);
         List<Estacionamentos> GetCarrosNaGaragem(string codigoGaragem);
-        List<Estacionamentos> GetCarrosQuePassaram(string codigoGaragem);
+        List<Passagens> GetCarrosQuePassaram(string garagem);
     }
 }
