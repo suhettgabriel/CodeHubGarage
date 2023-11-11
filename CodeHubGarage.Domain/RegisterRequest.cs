@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CodeHubGarage.Domain
 {
@@ -18,7 +14,7 @@ namespace CodeHubGarage.Domain
         [Required]
         public string LastName { get; set; }
 
-        [DataType(DataType.Date)] 
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
         [DisplayFormat(DataFormatString = "({0:##})#####-####", ApplyFormatInEditMode = true)]

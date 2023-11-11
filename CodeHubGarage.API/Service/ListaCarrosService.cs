@@ -16,24 +16,24 @@ namespace CodeHubGarage.API.Service
             _dbContext = dbContext;
         }
 
-        public List<Passagens> GetCarrosNoPeriodo(DateTime dataHoraInicial, DateTime dataHoraFinal, string codigoGaragem)
+        public List<Estacionamentos> GetCarrosNoPeriodo(DateTime dataHoraInicial, DateTime dataHoraFinal, string codigoGaragem)
         {
-            return _dbContext.Passagens
-                .Where(p => p.Garagem == codigoGaragem && p.DataHoraEntrada >= dataHoraInicial && p.DataHoraSaida <= dataHoraFinal)
+            return _dbContext.Estacionamentos
+                .Where(p => p.GaragemCodigo == codigoGaragem && p.DataHoraEntrada >= dataHoraInicial && p.DataHoraSaida <= dataHoraFinal)
                 .ToList();
         }
 
-        public List<Passagens> GetCarrosNaGaragem(string codigoGaragem)
+        public List<Estacionamentos> GetCarrosNaGaragem(string codigoGaragem)
         {
-            return _dbContext.Passagens
-                .Where(p => p.Garagem == codigoGaragem && p.DataHoraSaida == null)
+            return _dbContext.Estacionamentos
+                .Where(p => p.GaragemCodigo == codigoGaragem && p.DataHoraSaida == null)
                 .ToList();
         }
 
-        public List<Passagens> GetCarrosQuePassaram(string codigoGaragem)
+        public List<Estacionamentos> GetCarrosQuePassaram(string codigoGaragem)
         {
-            return _dbContext.Passagens
-                .Where(p => p.Garagem == codigoGaragem && p.DataHoraSaida != null)
+            return _dbContext.Estacionamentos
+                .Where(p => p.GaragemCodigo == codigoGaragem && p.DataHoraSaida != null)
                 .ToList();
         }
     }

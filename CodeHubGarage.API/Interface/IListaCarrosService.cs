@@ -4,8 +4,8 @@ namespace CodeHubGarage.API.Interface
 {
     public interface IListaCarrosService
     {
-        List<Passagens> GetCarrosNoPeriodo(DateTime dataHoraInicial, DateTime dataHoraFinal, string codigoGaragem);
-        List<Passagens> GetCarrosNaGaragem(string codigoGaragem);
-        List<Passagens> GetCarrosQuePassaram(string codigoGaragem);
+        List<Estacionamentos> GetCarrosNoPeriodo(DateTime dataHoraInicial, DateTime dataHoraFinal, string codigoGaragem);
+        List<Estacionamentos> GetCarrosNaGaragem(string codigoGaragem);
+        List<Estacionamentos> GetCarrosQuePassaram(string codigoGaragem);
     }
 }
