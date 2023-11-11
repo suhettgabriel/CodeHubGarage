@@ -44,6 +44,8 @@ namespace CodeHubGarage.API
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPassagemService, PassagemService>();
             services.AddScoped<IEstacionamentoService, EstacionamentoService>();
+            services.AddScoped<IFechamentoService, FechamentoService>();
+            services.AddScoped<IFormaPagamentoService, FormaPagamentoService>();
             services.AddScoped<IListaCarrosService, ListaCarrosService>();
             services.AddScoped<ITempoMedioService, TempoMedioService>();
             services.AddScoped<IGaragemService, GaragemService>();

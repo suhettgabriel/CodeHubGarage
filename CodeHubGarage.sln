@@ -16,6 +16,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeHubGarage.Domain", "Cod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeHubGarage.Tests", "CodeHubGarage.Tests\CodeHubGarage.Tests.csproj", "{FDBDD760-FDBD-415D-A66E-92F4B3EA0661}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{CB948FD3-BE8A-43E5-AE00-084BBFF6DFB3}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

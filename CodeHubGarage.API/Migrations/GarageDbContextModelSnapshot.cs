@@ -128,6 +128,18 @@ namespace CodeHubGarage.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CarroMarca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarroModelo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarroPlaca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DataHoraEntrada")
                         .HasColumnType("datetime2");
 
@@ -228,6 +240,9 @@ namespace CodeHubGarage.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecoTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("QuantidadeTempo")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

@@ -11,5 +11,7 @@
         public DateTime? DataHoraSaida { get; set; }
         public string FormaPagamento { get; set; }
         public decimal PrecoTotal { get; set; }
+        public decimal QuantidadeTempo { get; set; }
+        //public ApplicationUser User { get; set; }
     }
 }

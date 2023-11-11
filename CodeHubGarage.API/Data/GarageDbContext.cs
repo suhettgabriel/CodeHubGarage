@@ -11,7 +11,7 @@ namespace CodeHubGarage.API.Data
         public DbSet<Estacionamentos> Estacionamentos { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
 
-        public DbSet<AuthenticationResponse> AuthenticationResponses { get; set; } // Adicione a classe AuthenticationResponse
+        public DbSet<AuthenticationResponse> AuthenticationResponses { get; set; } 
 
         public GarageDbContext(DbContextOptions<GarageDbContext> options) : base(options)
         {
@@ -23,6 +23,7 @@ namespace CodeHubGarage.API.Data
             modelBuilder.Entity<Garagens>().HasKey(g => g.Codigo);
             modelBuilder.Entity<Passagens>().HasKey(p => p.Id);
             modelBuilder.Entity<AuthenticationResponse>().HasNoKey();
+            modelBuilder.Entity<Estacionamentos>().HasKey(e => e.Id);
         }
     }
 }

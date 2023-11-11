@@ -33,9 +33,9 @@ public class EstacionamentoController : ControllerBase
         var userIsMensalista = _estacionamentoService.VerificarSeUsuarioEhMensalista(userId);
         var nomeUsuario = _estacionamentoService.VerificaNomeUsuario(userId);
         var mensagemRetorno = $"Carro estacionado com sucesso! {nomeUsuario} entrou às {entrada}";
-
-        _logger.LogInformation($"Usuário {nomeUsuario} está estacionando um carro.");
-
+        var NomeCarroPlaca = request.CarroPlaca;
+        var NomeCarroMarca = request.CarroMarca;
+        var NomeCarroModelo = request.CarroModelo;
         var codGaragem = request.GaragemCodigo;
 
         var estacionamento = new Estacionamentos
@@ -46,14 +46,21 @@ public class EstacionamentoController : ControllerBase
             FormasPagamentoCodigo = request.FormasPagamentoCodigo,
             Status = false,
             isMensalista = userIsMensalista,
-            DataHoraSaida = null
-        };
+            DataHoraSaida = null,
+            CarroPlaca = NomeCarroPlaca,
+            CarroMarca = NomeCarroMarca,
+            CarroModelo = NomeCarroModelo
+    };
+        _logger.LogInformation($"Usuário {nomeUsuario} está estacionando um carro.");
 
         listaEstacionamentos.Add(estacionamento);
 
         SalvarEntradaEstacionamento(estacionamento);
 
+        _logger.LogInformation($"Usuário {nomeUsuario} estacionou o carro.");
+
         return Ok(new { Mensagem = mensagemRetorno });
+
     }
 
     private void SalvarEntradaEstacionamento(Estacionamentos estacionamento)
@@ -66,6 +73,9 @@ public class EstacionamentoController : ControllerBase
             DataHoraEntrada = estacionamento.DataHoraEntrada,
             Status = false,
             isMensalista = estacionamento.isMensalista,
+            CarroMarca =  estacionamento.CarroMarca,
+            CarroModelo =  estacionamento.CarroModelo,
+            CarroPlaca =  estacionamento.CarroPlaca,
         };
 
         _dbContext.Estacionamentos.Add(novoEstacionamento);
