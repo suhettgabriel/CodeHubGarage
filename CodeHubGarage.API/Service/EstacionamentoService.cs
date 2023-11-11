@@ -32,7 +32,7 @@ public class EstacionamentoService : IEstacionamentoService
         }
     }
 
-    public DateTime? GetDataEntrada(string userId)
+    public DateTime GetDataEntrada(string userId)
     {
         try
         {
@@ -100,45 +100,6 @@ public class EstacionamentoService : IEstacionamentoService
             throw;
         }
     }
-
-    public void DadosInfoUsuario(string userId, out string carroPlaca, out string carroMarca, out string carroModelo, out string formaPagamento)
-    {
-        try
-        {
-            var dadosUsuario = _dbContext.Estacionamentos
-                .Where(e => e.UserId == userId && e.Status == false)
-                .Select(e => new
-                {
-                    CarroPlaca = e.CarroPlaca,
-                    CarroMarca = e.CarroMarca,
-                    CarroModelo = e.CarroModelo,
-                    FormaPagamento = e.FormasPagamentoCodigo
-                })
-                .FirstOrDefault();
-
-            if (dadosUsuario != null)
-            {
-                carroPlaca = dadosUsuario.CarroPlaca;
-                carroMarca = dadosUsuario.CarroMarca;
-                carroModelo = dadosUsuario.CarroModelo;
-                formaPagamento = dadosUsuario.FormaPagamento;
-
-            }
-            else
-            {
-                carroPlaca = null;
-                carroMarca = null;
-                carroModelo = null;
-                formaPagamento = null;
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Erro em DadosInfoUsuario para o usuário {userId}: {ex.Message}");
-            throw;
-        }
-    }
-
     public void RegistrarEntradaEstacionamento(string userId, DateTime entrada)
     {
         try
@@ -176,18 +137,20 @@ public class EstacionamentoService : IEstacionamentoService
         }
     }
 
-    public void SalvarPassagem(string userId, DateTime entrada, Garagens garagem, string carroPlaca, string carroMarca, string carroModelo, string formaPagamento, TimeSpan quantidadeTempo, decimal valorEstadia)
+    public void SalvarPassagem(string userId, DateTime dataSaida, Garagens garagem, string carroPlaca, string carroMarca, string carroModelo, string formaPagamento, TimeSpan quantidadeTempo, decimal valorEstadia)
     {
         try
         {
+            DateTime dataEntrada = GetDataEntrada(userId);
+
             var novaPassagem = new Passagens
             {
                 Garagem = garagem.Codigo,
                 CarroPlaca = carroPlaca,
                 CarroMarca = carroMarca,
                 CarroModelo = carroModelo,
-                DataHoraEntrada = entrada,
-                DataHoraSaida = entrada,
+                DataHoraEntrada = dataEntrada,
+                DataHoraSaida = dataSaida,
                 FormaPagamento = formaPagamento,
                 QuantidadeTempo = quantidadeTempo.Hours,
                 PrecoTotal = valorEstadia
@@ -257,21 +220,20 @@ public class EstacionamentoService : IEstacionamentoService
             else
             {
                 decimal precoHora = garagem.Preco_1aHora;
+                TimeSpan duracao = dataHoraSaida.Value - dataEntrada.Value;
 
-                valorCalculado = precoHora;
-
-                if (dataHoraSaida.HasValue)
+                if (duracao > TimeSpan.FromHours(1))
                 {
-                    TimeSpan duracao = dataHoraSaida.Value - dataEntrada.Value;
-
-                    if (duracao > TimeSpan.FromMinutes(30))
-                    {
-                        valorCalculado += CalcularValorDemaisHoras(garagem, duracao);
-                    }
-                    else if (duracao > TimeSpan.Zero)
-                    {
-                        valorCalculado += precoHora * 0.5m;
-                    }
+                    valorCalculado = precoHora;
+                    valorCalculado += CalcularValorDemaisHoras(garagem, duracao);
+                }
+                else if (duracao > TimeSpan.FromMinutes(30))
+                {
+                    valorCalculado = precoHora + precoHora * 0.5m;
+                }
+                else if (duracao > TimeSpan.Zero)
+                {
+                    valorCalculado = precoHora * 0.5m;
                 }
             }
 

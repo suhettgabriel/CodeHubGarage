@@ -5,9 +5,8 @@ public interface IEstacionamentoService
 {
     bool VerificarSeUsuarioEhMensalista(string userId);
     string VerificaNomeUsuario(string userId);
-    DateTime? GetDataEntrada(string userId);
+    DateTime GetDataEntrada(string userId);
     DadosUsuario ObterDadosUsuario(string userId);
-    void DadosInfoUsuario(string userId, out string carroPlaca, out string carroMarca, out string carroModelo, out string formaPagamento);
     decimal CalcularValorEstadia(string userId, bool isMensalista, DateTime entrada, DateTime? saida);
     TimeSpan BuscarQuantidadeTempo(string userId, DateTime dataHoraSaida);
     void RegistrarEntradaEstacionamento(string userId, DateTime entrada);
